@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <title>1 Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box;  }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%;  }
+      form input { border: 0; padding: 10px; width: 80%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #idNick {width: 9%; color: #eee; padding: 10px; float: left;}
+      #messages { list-style-type: none; margin: 0; padding: 0;}
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      .chatNick{
+        color: #00f;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <div id="idNick"></div><input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script>
+        $(function () {
+          var id;
+          if(Cookies.get('idNick')){
+            id = Cookies.get('idNick');
+          } else {
+            id = Math.floor(Math.random() * 1000000) + 1000;
+            Cookies.set('idNick',id);
+          }
+        
+          $('#idNick').html(id);
+          var socket = io();
+          var url = document.URL;
+              var roomid =  url.substring(25);
+          var channel = roomid;
+          socket.emit('join', channel, function() {
+            console.log('joined: ' + channel);
+          });
+
+          $('form').submit(function(){
+            if ($('#m').val().trim()){
+              var url = document.URL;
+              var roomid =  url.substring(25);
+          // console.log(roomid);
+              
+              var msg =  $('#m').val();
+
+              var data = {
+                msg,
+                nick : id, 
+                channel: roomid
+              };
+              
+            socket.emit('broadcast',data);
+            $('#m').val('');
+            }
+            return false;
+          });
+          
+          socket.on('chat message',  function(msg){ 
+            console.log('chat message');
+            $('#messages').append($('<li>').html(msg));
+          });
+          socket.on('broadcast', function(data) {
+            console.log('broadcast');
+            $('#messages').append($('<li>').html(data.msg));
+         
+        });
+        });
+      </script>
+    
+</body>
+</html>

@@ -3,7 +3,7 @@ var express = require('express'),
 var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
-const port = 88;
+const port = 85;
 server.listen(port,'localhost',function(){
 	console.log(`Server running at post ${port}!`);
 
@@ -27,14 +27,22 @@ io.on('connection', function(socket){
     console.log("join/ channel: "+ channel);
   });
     socket.on('broadcast',  function(data, channel){
-    console.log(data);
-    console.log(data.nick); 
+    // console.log(data);
+    // console.log(data.nick); 
     
       var {msg,nick,channel} = data;
-      
+
       console.log(msg+" "+channel+" "+nick);
-     socket.in(channel).emit('broadcast', msg);
-     //io.sockets.emit('chat message', msg);
+
+      if(data.msg=="пошел нах"){
+        data.msg = "сам иди туда";
+        data.nick = "system";
+        socket.emit("broadcast",data);
+        return false;
+      }
+      
+     io.sockets.in(data.channel).emit("broadcast",data);
+
     });
   }
   catch (error){

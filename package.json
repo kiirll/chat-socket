@@ -1,22 +1,36 @@
 {
   "name": "test",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.2",
+  "description": "multiroom chan with sockets",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kiirll/chat-socket.git"
+  },
+  "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev" : "nodemon app1.js"
+    "dev": "nodemon app.js"
   },
   "dependencies": {
+    "dotenv": "^6.0.0",
     "express": "^4.16.2",
-    "nodemon": "^1.18.1",
+    "jquery-emoji-picker": "^0.2.2",
+    "mongoose": "^5.1.7",
+    "mongoose-autopopulate": "^0.7.0",
+    "mongoose-url-slugs": "^1.0.2",
+    "nodemon": "^1.18.3",
     "path": "^0.12.7",
     "socket.io": "^2.1.1",
     "static-asset": "^0.6.0"
   },
-  "author": "",
-  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1"
+  },
+  "author": "Kirill Kurinnoy <kirill.kurinnoy@gmai.com>",
   "engines": {
     "node": ">=9.0.0"
   }

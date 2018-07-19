@@ -1,0 +1,17 @@
+{
+  "plugins": ["node", "prettier"],
+  "extends": ["eslint:recommended", "plugin:node/recommended", "prettier"],
+  "rules": {
+    "node/exports-style": ["error", "module.exports"],
+    "no-console": 0,
+    "no-undef": 0,
+    "no-unused-vars": 0,
+    "no-redeclare": 0
+  },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jquery": true
+  }
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Socket.IO chat</title>
+  <style>
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/css/jquery.emojipicker.css">
+  <!-- Emoji Data -->
+  <link rel="stylesheet" type="text/css" href="/css/jquery.emojipicker.a.css">
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+  <div class="">
+    <a href="/" class="home-link navbar-brand">
+      <h3>Home</h3>
+    </a>
+    <i></i>
+    <h2 id="title-chat"></h2>
+    <div id="listRoom"></div>
+  </div>
+  <div id="messages"></div>
+  <!-- <form action="">
+      <div id="idNick" title="click to change"></div><input id="m" autocomplete="off" ><!--<i class="btn-smile far fa-smile fa-2x"></i>
+      <button class="btn-success">Send</button>
+    </form> -->
+
+
+  <div class="btn-group" style="border-radius:0 ;position: absolute;bottom: 0; width: 100%;" role="group" aria-label="Button group with nested dropdown">
+    <button style="border-radius:0" type="button" class="btn btn-secondary dropdown-toggle" id="idNick" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">Nickname</button>
+
+    <div class="dropdown-menu" aria-labelledby="idNick">
+      <span style="cursor: pointer;" id="changeNick" class="dropdown-item" href="#">Change nick</span>
+
+    </div>
+
+    <input id="m" style="border-radius:0 " class="form-control" placeholder="Type message">
+    <button id="send" style="border-radius:0 " class="btn btn-success">Send</button>
+
+  </div>
+
+
+  <div id="changeNickWindow">
+    <input type="text" name="newNick" class="form-control" placeholder="New Nick">
+    <button class="btnSaveNewNick btn btn-success btn-block">Save</button>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.emojipicker.js"></script>
+  <script type="text/javascript" src="/js/jquery.emojis.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+
+  <script type="text/javascript" src="/js/room.js"></script>
+  <style>
+    .emojiPicker {
+      position: fixed;
+      bottom: 85px !important;
+      right: 0px !important;
+    }
+  </style>
+</body>
+
+</html>
